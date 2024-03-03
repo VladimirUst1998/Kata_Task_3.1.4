@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Id User</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<new>
+    <br>
+    <h4 style="margin-left: 20px;">Add new user</h4>
+    <div class="table-container" style="border: 1px solid #ccc;  background-color: #fff;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <form role="form" class="form-horizontal" th:method="POST" th:action="@{/admin/addUser}" th:object="${user}">
+
+                        <div class="form-group text-center">
+                            <label for="name" class="control-label font-weight-bold">Name</label>
+                            <input type="text" class="form-control" placeholder="Name" aria-label="Name"
+                                   th:field="*{name}" id="name">
+                            <small class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
+                        </div>
+
+                        <div class="form-group text-center">
+                            <label for="lastName" class="control-label font-weight-bold">Last Name</label>
+                            <input type="text" class="form-control" placeholder="Last Name" aria-label="Last name"
+                                   th:field="*{surname}" id="lastName">
+                            <small class="text-danger" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></small>
+                        </div>
+
+                        <div class="form-group text-center">
+                            <label for="age" class="control-label font-weight-bold">Age</label>
+                            <input type="number" class="form-control" placeholder="Age" aria-label="Age" th:field="*{age}" id="age">
+                            <small class="text-danger" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></small>
+                        </div>
+
+                        <div class="form-group text-center">
+                            <label for="email" class="control-label font-weight-bold">Email</label>
+                            <input type="text" class="form-control" placeholder="Email" aria-label="Email"
+                                   th:field="*{email}" id="email">
+                            <small class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
+                        </div>
+
+                        <div class="form-group text-center">
+                            <label for="pass" class="control-label font-weight-bold">Password</label>
+                            <input type="password" class="form-control" placeholder="Password" aria-label="Password"
+                                   th:field="*{password}" id="pass">
+                            <small class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
+                        </div>
+
+                        <div class="form-group text-center">
+                            <label for="role" class="control-label font-weight-bold">Roles</label>
+                            <select class="form-control form-control-static" multiple="multiple"
+                                    size="2" th:field="*{roles}" id="role">
+                                <option value="2" th:selected="${true}">User</option>
+                                <option value="1">Admin</option>
+                            </select>
+                            <small class="text-danger" th:if="${#fields.hasErrors('roles')}" th:errors="*{roles}"></small>
+                        </div>
+
+                        <div>
+                            <button type="submit" class="btn btn-success btn-lg d-block mx-auto" style="margin-bottom: 40px;">
+                                Add new user
+                            </button>
+                            <div th:if="${param.error}" style="color: red">
+                                ERROR
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</new>
+</body>
+</html>
